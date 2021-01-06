@@ -1,0 +1,72 @@
+<html>
+  <head>
+      <style>
+          .favorite {
+              width: 25px;
+              font-size: 20px;
+              text-align: center;
+              background-color: deeppink;
+          }
+      </style>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  </head>
+  <body>
+    <div id='root'></div>
+  <script>
+    const root = document.querySelector('#root');
+
+    const App = () => {
+        // const randoNumber = () => Math.floor(Math.random() * 100)
+        // const [numbers, setNumbers] = React.useState([randoNumber()])
+        const [numbers, setNumbers] = React.useState([1, 2, 3, 4, 5])
+
+        // const numberList = () => {
+        //     for (let i = 0; i < 10; i++) {
+        //         return randoNumber()
+        //     }
+        // }
+
+        //needs an array, add array to number use state instead, 
+        //numerlist function needs to return something and that something goes into line 13
+        //utiltize state to map over elements
+
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'h1',
+                null,
+                'Favorite Number Selector'
+            ),
+
+            React.createElement(
+                'div',
+                {
+                    onClick: () => {
+                        React.createElement(
+                            'div',
+                            {
+                                className: 'favorite'
+                            },
+                            number
+                        )
+                    }
+                },
+                numbers.map((number, index) => React.createElement(
+                    'div',
+                    {
+                        key: index
+                    },
+                    number
+                ))
+            )
+        )
+    }
+
+    // click number, change state, ract needs to re-render page
+
+    ReactDOM.render(React.createElement(App), root);
+  </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  </head>
+  <body>
+    <div id='root'></div>
+  <script>
+    const root = document.querySelector('#root');
+
+    const App = () => {
+        const randoNumber = () => Math.floor(Math.random() * 100)
+        const [numbers, setNumbers] = React.useState([randoNumber()])
+
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'button',
+                {
+                onClick: () => {
+                    const randNum = randoNumber()
+                    numbers.push(randNum)
+                    setNumbers([...numbers])
+                }
+            },
+            'Add A Number'
+            ),
+
+            React.createElement(
+                'button',
+                {
+                    onClick: () => {
+                        const removeOdd = numbers.filter(number => {
+                            return number % 2 === 0
+                        })
+                        setNumbers(removeOdd)
+                    }
+                },
+                'Remove Odd Numbers'
+            ),
+
+            React.createElement(
+                'button',
+                {
+                    onClick: () => {
+                        const removeEven = numbers.filter(number => {
+                            return number % 2 !== 0
+                        })
+                        setNumbers(removeEven)
+                    }
+                },
+                'Remove Even Numbers'
+            ),
+
+            React.createElement(
+                'ul',
+                null,
+                numbers.map((number, index) => React.createElement(
+                    'li',
+                    {
+                        key: index
+                    },
+                    number
+                ))
+            )
+        )
+    }
+
+    ReactDOM.render(React.createElement(App), root);
+  </script>
+  </body>
+</html>
