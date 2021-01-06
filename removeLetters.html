@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <style>
+        .word {
+            font-size: 30px;
+            margin-top: 5px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id='root'></div>
+  <script>
+    const root = document.querySelector('#root');
+
+    const App = () => {
+        const [word, setWord] = React.useState('REACT')
+
+        return React.createElement(
+            'div',
+            null,
+            React.createElement(
+                'button',
+                null,
+                'Remove Vowels'
+            ),
+
+            React.createElement(
+                'button',
+                null,
+                'Remove Consonants'
+            ),
+
+            React.createElement(
+                'div',
+                {
+                    className: 'word'
+                },
+                word
+            )
+        )
+    }
+
+    ReactDOM.render(React.createElement(App), root);
+  </script>
+  </body>
+</html>
