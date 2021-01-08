@@ -22,7 +22,18 @@
             null,
             React.createElement(
                 'button',
-                null,
+                {
+                    onClick: () => {
+                        const wordArray = word.split('')
+                        const removeVowels = wordArray.filter(( letter, index ) => {
+                            if (letter === 'A' || letter === 'E' || letter === 'I' || letter === 'O' || letter === 'U' ) {
+                                console.log(letter)
+                                wordArray.splice(index, 1)
+                            }
+                        })
+                        setWord(wordArray)
+                    }
+                },
                 'Remove Vowels'
             ),
 

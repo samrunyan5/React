@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id='root'></div>
+  <script type='text/babel'>
+
+
+    const countVowels = (arrayOne, arrayTwo) => {
+        let counter = 0
+
+        arrayOne.forEach(letter => {
+            arrayTwo.forEach(vowel => {
+                letter === vowel ? counter++ : ''
+            })
+        })
+        return counter
+    }
+
+    const countConsonants = (arrayOne, arrayTwo) => {
+        let counter = 0
+
+        arrayOne.forEach(letter => {
+            !arrayTwo.includes(letter) ? counter++ : ''
+        })
+        return counter
+    }
+
+    const App = () => {
+        const [word, setWord] = React.useState('ROBOT')
+        const wordArray = word.toUpperCase().split('')
+        const vowelArray = ['A', 'E', 'I', 'O', 'U']
+
+
+        return (
+            <div>
+                <h1>Word of the Day is {wordArray}</h1>
+                <button onClick={ () => {
+                    let lastHalfOfWord = wordArray ? wordArray.slice(1) : ''
+                    setWord(lastHalfOfWord.join(''))
+                }}>Remove the First Letter</button> 
+                <p>Your word has {wordArray.length} characters.</p> 
+                <p>There are {countVowels(wordArray, vowelArray)} vowels.</p> 
+                <p>There are {countConsonants(wordArray, vowelArray)} consonants.</p>
+            </div>
+        )
+    }
+
+    const root = document.querySelector('#root');
+    ReactDOM.render(<App />, root);
+  </script>
+  </body>
+</html>

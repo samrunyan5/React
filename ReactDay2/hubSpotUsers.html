@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id='root'></div>
+  <script type='text/babel'>
+
+    const App = () => {
+        const [user, setUser] = React.useState([])
+
+        const fetchData = async () => {
+            const response = await fetch('https://jsonplace-univclone.herokuapp.com/users')
+            const data = await response.json()
+            console.log(data)
+            setUser(data)
+        }
+
+        React.useEffect( () => {
+            fetchData()
+        }, [])
+
+
+        return (
+            <div>
+                <h1>User Hub React</h1>
+                <h2>Home to X Number of Users</h2>
+                <br />
+                <p>Replace with Email</p>
+                <p>Replace with UserName</p>
+                <p>Replace with Website</p>
+                <br />
+            </div>
+        )
+    }
+
+    const root = document.querySelector('#root');
+    ReactDOM.render(<App />, root);
+  </script>
+  </body>
+</html>
