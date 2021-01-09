@@ -10,7 +10,6 @@
 
   const App = () => {
     const [users, setUsers] = React.useState([])
-    // const {id, email, username, website} = users
 
     const fetchData = async () => {
         const response = await fetch('https://jsonplace-univclone.herokuapp.com/users')
@@ -31,13 +30,14 @@
             <ul>
             {
               users.map(user => {
+                const {id, email, username, website} = user
                 return (
-                  <li key={user.id}>
-                    {user.email}
+                  <li key={id}>
+                    {email}
                     <br />
-                    {user.username}
+                    {username}
                     <br />
-                    {user.website}
+                    {website}
                   </li>
                 )
               })
